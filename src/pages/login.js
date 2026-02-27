@@ -1,40 +1,41 @@
-import background from "../images/phflag.jpg";
-import { useNavigate } from "react-router-dom";
 import React from 'react';
-
-
-
+import { useNavigate } from "react-router-dom";
+import { TEInput, TERipple } from "tw-elements-react";
+import axios from 'axios';
+import background from "../images/phflag.jpg"; 
 
 export default function Login() {
+    const navigate = useNavigate();
+    const [errors, setErrors] = useState({});
 
-  const navigate = useNavigate();
-  const handleLoginClick = () => {
-    navigate('/login');
-  };
+    const handleLoginClick = async (e) => {
 
-  return (
+        e.preventDefault();
 
-    <div className="min-h-screen relative flex items-center justify-center bg-gray-900">
-      
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
-        style={{ backgroundImage: `url(${background})` }}
-      ></div>
+        const newErrors = {};
+        if (!voters_id) newErrors.voters_id = "Voters ID is required!";
+        if (!password) newErrors.password = "Password is required!";
+        setErrors(newErrors)
+        if (Object.keys(newErrors).length > 0) return;
 
-      <div className="relative z-10 bg-white w-full max-w-md p-8 rounded-lg shadow-xl">
-        
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">BrgyChain Voting</h1>
-          <p className="text-sm text-gray-500">Secure. Transparent. Immutable.</p>
-        </div>
+        try {
+            const response = await axios.post(
+                "https://localhost:3000/login",
+                ({voters_id, password}),
+                {headers: {"Content-Type" : "application/x-www-form-urlencoded"}}
+            );
 
-        <div className="text-center p-4 border-2 border-solid border-gray-300 cursor-pointer rounded-lg">
-          <button onClick={handleLoginClick} className="text-black-400" >Click to Login!</button>
-        </div>
+            localStorage.setItem("token", response.data.token);
+            navigate('/dashboard')
+            
+        } catch (error) {
+            if (error.response) {
+                setErrors({form: error.response.data.message || "Invalid credentials."});
+            } else {
+                setErrors({form: "Cant connect to the server. Please try again later!"});
+            }
+        }
 
-      </div>
-      
-    </div>
-  );
-}
+    };
 
+};

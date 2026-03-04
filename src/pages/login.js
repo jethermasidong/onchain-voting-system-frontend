@@ -23,14 +23,16 @@ export default function Login() {
 
         try {
             const response = await axios.post(
-                "http://localhost:3000/login",
-                ({voters_id, password}),
+                "http://localhost:3000/api/login",
+                {voters_id, password},
+                { headers: { "Content-Type": "application/json" } }
             );
 
             localStorage.setItem("token", response.data.token);
             navigate('/dashboard')
             
         } catch (error) {
+            console.error("Full Error", error);
             if (error.response) {
                 setErrors({form: error.response.data.message || "Invalid credentials."});
             } else {

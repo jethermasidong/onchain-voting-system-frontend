@@ -29,7 +29,14 @@ export default function Login() {
             );
 
             localStorage.setItem("token", response.data.token);
-            navigate('/dashboard')
+
+            const role = response.data.voters.role;
+
+            if (role === "admin") {
+              navigate('/admin-dashboard')
+            } else {
+              navigate('/voter-dashboard')
+            }
             
         } catch (error) {
             console.error("Full Error", error);

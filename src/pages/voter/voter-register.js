@@ -9,10 +9,7 @@ export default function VoterRegister() {
     
     
     
-    
-    
-    
-    
+
     
     
     return (

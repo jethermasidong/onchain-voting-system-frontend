@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Logo from "../images/logo.jpeg"; 
+import Phflag from "../images/pgflag.gif";
 import Loginimage from "../images/login.jpeg";
 import { Mail, KeyRound } from 'lucide-react';
 
@@ -57,11 +58,15 @@ export default function Login() {
         }
 
     };
-
+ 
     return (
-
-    <div class="bg-white flex items-center justify-center md:h-screen p-4">
-      <div class="[box-shadow:rgba(149,157,165,0.3)_0px_4px_18px] max-w-3xl max-md:max-w-lg rounded-lg p-7">
+    <div 
+      className="bg-white flex items-center justify-center min-h-screen p-4 bg-cover bg-center bg-no-repeat relative">
+      <div 
+      className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-15" 
+      style={{ backgroundImage: `url(${Phflag})` }}
+      ></div>
+      <div class="relative z-10 [box-shadow:rgba(149,157,165,0.3)_0px_4px_18px] max-w-3xl max-md:max-w-lg rounded-lg p-7 bg-white">
         <a href="javascript:void(0)">
           <img src={Logo} alt="logo" class="w-36 md:mb-4 mb-12" />
         </a>

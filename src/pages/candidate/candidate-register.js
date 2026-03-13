@@ -34,7 +34,7 @@ export default function CandidateRegister() {
     }
     return (
         <div class="max-w-4xl max-sm:max-w-lg mx-auto p-6 mt-36">
-            <div class="text-center mb-12 sm:mb-16">
+            <div class="text-center mb-12 sm:mb-16 border border-black rounded-xl px-5 py-5">
                 <a href="javascript:void(0)"><img
                 src={Logo} alt="logo" class='w-64 inline-block' />
                 </a>
@@ -42,24 +42,24 @@ export default function CandidateRegister() {
             </div>
 
             <form>
-                <div class="grid sm:grid-cols-1 gap-8">
+                <div class="grid sm:grid-cols-1 gap-8 border border-black rounded-xl px-5 py-5 bg-slate-200">
                 <div>
                     <label class="text-slate-900 text-sm font-medium mb-2 block">Full Name</label>
                     <input name="full_name" type="text" value={full_name} 
                     onChange={(e) => setFullName(e.target.value)}
-                    class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-green-500 transition-all" placeholder="Enter full name" />
+                    class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-green-500 transition-all border border-gray-400" placeholder="Enter full name" />
                 </div>
                 <div>
                     <label class="text-slate-900 text-sm font-medium mb-2 block">Position</label>
                     <input name="position" type="text" value={position} 
                     onChange={(e) => setPosition(e.target.value)}
-                    class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-green-500 transition-all" placeholder="Enter position" />
+                    class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-green-500 transition-all border border-gray-400" placeholder="Enter position" />
                 </div>
                 <div>
                     <label class="text-slate-900 text-sm font-medium mb-2 block">Party List</label>
                     <input name="partylist" type="text" value={partylist} 
                     onChange={(e) => setPartylist(e.target.value)} 
-                    class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-green-500 transition-all" placeholder="Enter party list" />
+                    class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-green-500 transition-all border border-gray-400" placeholder="Enter party list" />
                 </div>
                 </div>
                 <div class="mt-12">

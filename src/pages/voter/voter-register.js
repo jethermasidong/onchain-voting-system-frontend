@@ -63,7 +63,7 @@ export default function VoterRegister() {
           </div>
           <div>
             <label class="text-slate-900 text-sm font-medium mb-2 block">Full Name</label>
-            <input name="name_hash" type="text" 
+            <input name="name_hash" type="text"  
             value={name_hash}
             onChange={(e) => setNameHash(e.target.value)}
             class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-green-500 transition-all border border-black" placeholder="Enter full name" />

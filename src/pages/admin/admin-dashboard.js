@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../../components/header";
 
 const UserPlusIcon = () => (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -31,13 +32,13 @@ export default function AdminDashboard() {
   const handleClick = (id) => {
     setActive(id);
     setTimeout(() => {
-        if (id === "candidates") {
-            window.location.href = "/candidate-register";
-        } else if (id === "voters") {
-            window.location.href = "/voter-register";
-        }
+      if (id === "candidates") {
+        window.location.href = "/candidate-register";
+      } else if (id === "voters") {
+        window.location.href = "/voter-register";
+      }
     }, 300);
-};
+  };
 
   const cards = [
     {
@@ -47,7 +48,6 @@ export default function AdminDashboard() {
       description: "Register a new candidate to the election ballot.",
       tag: "MANAGE",
       icon: <UserPlusIcon />,
-      accent: "#1c1c1c",
     },
     {
       id: "voters",
@@ -56,41 +56,24 @@ export default function AdminDashboard() {
       description: "Register a new eligible voter into the system.",
       tag: "MANAGE",
       icon: <VoteIcon />,
-      accent: "#1c1c1c",
     },
   ];
 
   return (
     <div
       style={{ fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif" }}
-      className="min-h-screen bg-stone-50 flex flex-col"
+      className="min-h-screen bg-gray-200 flex flex-col"
     >
-      <header className="px-10 py-6 flex items-center justify-between border-b border-stone-200">
-        <span
-          style={{ fontFamily: "monospace", letterSpacing: "0.18em", fontSize: "0.7rem" }}
-          className="text-stone-400 uppercase font-medium tracking-widest"
-        >
-          Admin · Dashboard
-        </span>
-        <span
-          style={{ fontFamily: "monospace", fontSize: "0.65rem", letterSpacing: "0.1em" }}
-          className="text-stone-300 uppercase border border-stone-200 px-3 py-1 rounded-sm"
-        >
-          v1.0
-        </span>
-      </header>
-
-
-      <main className="flex-1 flex flex-col items-center justify-center px-6 py-16">
+      <Header />
+      <main className="flex-1 flex flex-col items-center justify-center px-6 py-16 pt-28">
         <div className="text-center mb-14">
-          <h1 className="text-4xl font-light text-stone-800 tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+          <h1 className="text-4xl font-light text-stone-800 tracking-tight font-sentient" style={{ letterSpacing: "-0.03em" }}>
             Election Management
           </h1>
-          <p className="mt-3 text-sm text-stone-400 font-light">
+          <p className="mt-3 text-sm text-stone-400 font-light font-sentient">
             Select an action to manage the election registry.
           </p>
         </div>
-
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-xl pb-20">
           {cards.map((card) => {
@@ -103,21 +86,13 @@ export default function AdminDashboard() {
                 onMouseEnter={() => setHovered(card.id)}
                 onMouseLeave={() => setHovered(null)}
                 onClick={() => handleClick(card.id)}
-                className="text-left bg-white border border-stone-200 rounded-sm p-8 flex flex-col gap-6 cursor-pointer transition-all duration-200"
-                style={{
-                  boxShadow: isHovered ? "0 12px 40px rgba(0,0,0,0.08)" : "0 1px 4px rgba(0,0,0,0.04)",
-                  transform: isActive ? "scale(0.98)" : isHovered ? "translateY(-3px)" : "translateY(0)",
-                  outline: "none",
-                  borderColor: isHovered ? "#a8a29e" : "#e7e5e4",
-                }}
+                className={`text-left font-sentient bg-white border rounded-xl p-8 flex flex-col gap-6 cursor-pointer transition-all duration-200
+                ${isHovered ? "border-stone-400 shadow-lg -translate-y-1" : "border-stone-300 shadow-sm"}
+                ${isActive ? "scale-95" : ""}`}
               >
                 <div
-                  className="w-12 h-12 flex items-center justify-center border border-stone-200 rounded-sm transition-all duration-200"
-                  style={{
-                    background: isHovered ? "#1c1c1c" : "#fafaf9",
-                    color: isHovered ? "#fff" : "#1c1c1c",
-                    borderColor: isHovered ? "#1c1c1c" : "#e7e5e4",
-                  }}
+                  className={`w-12 h-12 flex items-center justify-center border rounded-sm transition-all duration-200
+                  ${isHovered ? "bg-stone-900 text-white border-stone-900" : "bg-stone-50 text-stone-900 border-stone-300"}`}
                 >
                   {card.icon}
                 </div>
@@ -138,14 +113,11 @@ export default function AdminDashboard() {
                 </div>
 
                 <div
-                  className="flex items-center gap-2 text-sm font-light transition-all duration-200"
-                  style={{ color: isHovered ? "#1c1c1c" : "#a8a29e" }}
+                  className={`flex items-center gap-2 text-sm font-light transition-all duration-200
+                  ${isHovered ? "text-stone-900" : "text-stone-400"}`}
                 >
                   <span>{card.action}</span>
-                  <span
-                    className="transition-transform duration-200"
-                    style={{ transform: isHovered ? "translateX(4px)" : "translateX(0)" }}
-                  >
+                  <span className={`transition-transform duration-200 ${isHovered ? "translate-x-1" : ""}`}>
                     <ArrowRight />
                   </span>
                 </div>

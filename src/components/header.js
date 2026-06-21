@@ -27,13 +27,13 @@ export default function FloatingHeader() {
             ? "bg-white/70 backdrop-blur-lg shadow-lg border border-white/20"
             : "bg-white/50 backdrop-blur-md"
         }
-        rounded-2xl px-6 py-3 flex items-center justify-between`}
+        rounded-2xl px-6 py-3 flex items-center justify-between hover:shadow-lg shadow-black`}
       >
         <img src={Logo} alt="logo" class="w-44" />
 
         <nav className="hidden md:flex gap-6 text-sm font-medium">
-          <a href="/login">Home</a>
-          <a onClick={handleLogout}>Logout</a>
+          <a className="cursor-pointer hover:text-[#258fd2]" href="/admin-dashboard">Home</a>
+          <a className="cursor-pointer hover:text-[#258fd2]" onClick={handleLogout}>Logout</a>
         </nav>
       </header>
     </div>

@@ -62,7 +62,7 @@ export default function AdminDashboard() {
   return (
     <div
       style={{ fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif" }}
-      className="min-h-screen bg-gray-200 flex flex-col"
+      className="min-h-screen bg-gray-200 flex flex-col animate-page-fade"
     >
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center px-6 py-16 pt-28">

@@ -1,6 +1,7 @@
 {
   "name": "onchain-voting-frontend",
   "version": "0.1.0",
+  "type" : "module",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
@@ -20,9 +21,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "vite build",
     "test": "react-scripts test",
-    "dev": "react-scripts start",
+    "dev": "vite",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

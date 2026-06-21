@@ -1,7 +1,8 @@
 import Logo from "../../images/logo.jpeg";
 import React, {useState} from 'react';
 import axios from 'axios';
-import {MoveLeft, Check, UserRoundPlus} from 'lucide-react';
+import { Link } from 'react-router-dom';
+import {MoveLeft, Check, UserRoundPlus, Eye} from 'lucide-react';
 import Header from "../../components/header";
 
 export default function CandidateRegister() {
@@ -17,7 +18,7 @@ export default function CandidateRegister() {
     const handleRegister = async (e) => {
         e.preventDefault();
         const newErrors = {};
-        if (!first_name) newErrors.full_name = "First name is required!";
+        if (!first_name) newErrors.first_name = "First name is required!";
         if (!last_name) newErrors.last_name = "Last name is required!";
         if (!position) newErrors.position = "Position is required!";
         if (!partylist) newErrors.partylist = "Partylist is required";
@@ -63,7 +64,7 @@ export default function CandidateRegister() {
     );
     
     return (
-        <div class="min-h-screen w-full bg-gray-100 p-6">
+        <div class="min-h-screen w-full bg-gray-100 p-6 animate-page-fade">
             <Header />
             <div class="max-w-4xl max-sm:max-w-lg mx-auto p-6 mt-28">
                 <div class="text-center mb-12 sm:mb-8 rounded-xl px-5 py-5">
@@ -76,7 +77,7 @@ export default function CandidateRegister() {
                     <div class="px-10 border rounded-xl bg-white">
                         <h4 className="flex items-center justify-between gap-2 mt-7">
                             <UserRoundPlus className="w-10 h-10 bg-white border rounded-md px-2 mb-3" /> 
-                            <h1 className="border border-gray-300 px-2 py-1 rounded-xl text-gray-500 text-xs font-bold">Admin Only</h1>
+                            <Link to="/candidate-view" className="border border-gray-300 px-2 py-1 rounded-xl text-gray-500 text-xs font-bold focus:outline-none cursor-pointer hover:border-gray-400 shadow-none transition-shadow duration-150 hover:shadow-md hover:shadow-gray-300 flex items-center gap-1"><Eye className="w-4 h-4" />View Candidates</Link>
                         </h4>
                         <span className="text-gray-700 text-2xl mt-7 font-bold">Candidate Register</span>
                         <h5 class="text-slate-500 text-md font-thin">Register a new candidate to the election ballot.</h5>

@@ -5,6 +5,8 @@ import ProtectedRoute from './protectedRoute.js';
 import VoterDashboard from './pages/voter/voter-dashboard.js';
 import CandidateRegister from './pages/candidate/candidate-register.js';
 import VoterRegister from './pages/voter/voter-register.js';
+import CandidateView from './pages/candidate/candidate-view.js';
+import VoterView from './pages/voter/voter-view.js';
 import Login from './pages/login.js'; 
 
 export default function App() {
@@ -15,7 +17,9 @@ export default function App() {
         <Route path="/admin-dashboard" element={<ProtectedRoute allowedRole="admin"><AdminDashboard /></ProtectedRoute>} />
         <Route path="/voter-dashboard" element={<ProtectedRoute allowedRole="voter"><VoterDashboard /></ProtectedRoute>} />
         <Route path="/candidate-register" element={<ProtectedRoute allowedRole="admin"><CandidateRegister /></ProtectedRoute>} />
+        <Route path="/candidate-view" element={<ProtectedRoute allowedRole="admin"><CandidateView /></ProtectedRoute>} />
         <Route path="/voter-register" element={<ProtectedRoute allowedRole="admin"><VoterRegister /></ProtectedRoute>} />
+        <Route path="/voter-view" element={<ProtectedRoute allowedRole="admin"><VoterView /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );

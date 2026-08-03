@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+#IBOTO Onchain Voting System
+
+![BARG gameplay preview](public/iboto.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

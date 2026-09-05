@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Logo from "../images/logo.jpeg";
+import Logo from "../images/login.jpeg";
 export default function FloatingHeader() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -29,7 +29,7 @@ export default function FloatingHeader() {
         }
         rounded-2xl px-6 py-3 flex items-center justify-between hover:shadow-lg shadow-black`}
       >
-        <img src={Logo} alt="logo" class="w-44" />
+        <img src={Logo} alt="logo" class="w-20" />
 
         <nav className="hidden md:flex gap-6 text-sm font-medium">
           <a className="cursor-pointer hover:text-[#258fd2]" href="/admin-dashboard">Home</a>

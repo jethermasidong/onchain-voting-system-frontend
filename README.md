@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 #PROTEKBOTO Onchain Voting System
 
 ![Protekboto preview](public/protekboto.png)
-=======
-IBOTO Onchain Voting System
-
-![BARG gameplay preview](public/iboto-cover.png)
->>>>>>> 95c6c5c06d3ba71faf737af08da906c6c3f34978
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

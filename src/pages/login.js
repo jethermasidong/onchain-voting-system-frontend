@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Logo from "../images/logo.jpeg"; 
+import BgImage from '../images/bg.png';
 import Loginimage from "../images/bg-login.png";
 import { Mail, KeyRound, CircleCheckBig } from 'lucide-react';
 
@@ -64,6 +65,11 @@ export default function Login() {
  
     return (
     <div className="bg-white flex items-center justify-center min-h-screen p-4 sm:p-8 font-sentient">
+      <img 
+        src={BgImage} 
+        alt="Login background" 
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
+      />
       <div className="flex w-full max-w-5xl bg-white rounded-xl shadow-[rgba(149,157,165,0.3)_0px_8px_24px] overflow-hidden min-h-[550px]">
         <div className="hidden md:flex md:w-1/2 relative bg-gradient-to-t from-green-800 to-white flex-col justify-between p-10">
           <img 

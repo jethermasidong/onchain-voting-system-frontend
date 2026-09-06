@@ -4,10 +4,6 @@ export default function ProtectedRoute({ children, allowedRole }) {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
 
-  console.log("TOKEN:", token);
-  console.log("ROLE:", role);
-  console.log("ALLOWED:", allowedRole);
-
   if (!token) {
     return <Navigate to="/" replace />;
   }

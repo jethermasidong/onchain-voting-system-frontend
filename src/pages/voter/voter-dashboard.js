@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CheckCircle, Info, AlertCircle } from 'lucide-react';
 
 const MunicipalBallot = () => {
@@ -6,10 +6,9 @@ const MunicipalBallot = () => {
   const [selections, setSelections] = useState({
     mayor: null,
     viceMayor: null,
-    councilors: [], // Array to hold up to 8 IDs
+    councilors: [], 
   });
 
-  // Mock Election Data
   const candidates = {
     mayor: [
       { id: 'm1', firstName: 'Jane', lastName: 'Doe', party: 'Progressive Alliance' },
@@ -36,7 +35,6 @@ const MunicipalBallot = () => {
     ]
   };
 
-  // Handle Single Select (Mayor / Vice Mayor)
   const handleSingleSelect = (position, id) => {
     setSelections(prev => ({
       ...prev,
@@ -44,20 +42,16 @@ const MunicipalBallot = () => {
     }));
   };
 
-  // Handle Multi-Select (Councilors - Max 8)
   const handleCouncilorSelect = (id) => {
     setSelections(prev => {
       const currentlySelected = prev.councilors.includes(id);
       
       if (currentlySelected) {
-        // Remove if already selected
         return { ...prev, councilors: prev.councilors.filter(item => item !== id) };
       } else {
-        // Add if under the 8-candidate limit
         if (prev.councilors.length < 8) {
           return { ...prev, councilors: [...prev.councilors, id] };
         }
-        // Do nothing if limit reached
         return prev;
       }
     });
@@ -76,7 +70,6 @@ const MunicipalBallot = () => {
   return (
     <div className="max-w-5xl mx-auto my-8 p-6 bg-slate-50 border border-slate-200 rounded-xl shadow-md font-sans select-none">
       
-      {/* Header Block */}
       <header className="text-center border-b-2 border-dashed border-slate-300 pb-6 mb-8">
         <h1 className="text-3xl font-black text-slate-800 tracking-tight">OFFICIAL LOCAL BALLOT</h1>
         <p className="text-sm font-semibold text-slate-500 uppercase mt-1">Municipal Elections 2026</p>

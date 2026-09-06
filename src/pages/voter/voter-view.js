@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Header from '../../components/header';
 import { useState, useEffect } from 'react';
 import { MoreVertical, Check, UserPlus } from 'lucide-react';
 
@@ -85,7 +84,6 @@ export default function VoterView() {
 
     return (
         <div className="min-h-screen w-full bg-gray-100 p-6 animate-page-fade">
-            <Header />
             <div className="max-w-4xl max-sm:max-w-lg mx-auto p-6 mt-28">
                 <div className="px-10 border rounded-xl bg-white">
                     <div className='flex justify-between align-middle mt-11 -mb-8'>

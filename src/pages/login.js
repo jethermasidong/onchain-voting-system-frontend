@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import Logo from "../images/logo.jpeg"; 
-import BgImage from '../images/bg.png';
-import Loginimage from "../images/bg-login.png";
+import Logo from "../assets/images/logo.png"; 
+import BgImage from '../assets/images/bg.png';
+import Loginimage from "../assets/images/bg-login.png";
 import { Mail, KeyRound, CircleCheckBig } from 'lucide-react';
 
 export default function Login() {

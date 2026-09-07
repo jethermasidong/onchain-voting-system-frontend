@@ -1,6 +1,6 @@
-import Logo from "../images/login.jpeg";
+import Logo from "../assets/images/login.jpeg";
 import { useNavigate, useLocation } from "react-router-dom";
-import { LayoutDashboard, Users, Vote, LogOut } from "lucide-react";
+import { Home, Users, Vote, LogOut } from "lucide-react";
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function Sidebar() {
   };
 
   const navItems = [
-    { label: "Dashboard", path: "/admin-dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
+    { label: "Dashboard", path: "/admin-dashboard", icon: <Home className="w-5 h-5" /> },
     { label: "Candidates", path: "/candidate-register", icon: <Users className="w-5 h-5" /> },
     { label: "Voters", path: "/voter-register", icon: <Vote className="w-5 h-5" /> },
   ];
@@ -21,7 +21,7 @@ export default function Sidebar() {
   return (
     <aside className="w-20 bg-white border border-stone-200 rounded-2xl shadow-xs hidden md:flex flex-col items-center justify-between py-6 my-6 ml-6 font-sentient">
       <div className="flex flex-col items-center gap-8">
-        <img src={Logo} alt="logo" class="w-20" />
+        <img src={Logo} alt="logo" class="w-14" />
 
         <nav className="flex flex-col gap-3">
           {navItems.map((item) => {

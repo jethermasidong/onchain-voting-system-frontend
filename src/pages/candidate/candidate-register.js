@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Sidebar from "../../components/sidebar.js";
-import { Check, User, Award } from "lucide-react";
+import { Check } from "lucide-react";
 import axios from "axios";
 
 export default function CandidateManagement() {
@@ -78,7 +78,7 @@ export default function CandidateManagement() {
     };
 
     return (
-        <div className="min-h-screen bg-stone-50 flex flex-col font-sentient">
+        <div className="min-h-screen bg-stone-50 flex flex-col font-sentient aniamte-page-in">
             <div className="flex flex-1">
                 <Sidebar />
 
@@ -106,7 +106,7 @@ export default function CandidateManagement() {
 
                             <div className="flex flex-col gap-4">
                                 <div>
-                                    <label className="text-stone-800 text-xs font-mono uppercase tracking-wider mb-1.5 block">
+                                    <label className="text-stone-800 text-xs tracking-wider mb-1.5 block">
                                         First Name
                                     </label>
                                     <input 
@@ -114,13 +114,13 @@ export default function CandidateManagement() {
                                         value={first_name}
                                         onChange={(e) => setFirstName(e.target.value)}
                                         placeholder="Enter candidate's first name"
-                                        className="bg-stone-50/50 text-stone-900 text-sm px-4 py-3 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900/20 w-full transition-all"
+                                        className="bg-stone-50/50 text-stone-900 text-sm px-4 py-2 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900 w-full transition-all"
                                     />
                                     {errors.first_name && <span className="text-red-500 text-xs mt-1 block font-mono">{errors.first_name}</span>}
                                 </div>
 
                                 <div>
-                                    <label className="text-stone-800 text-xs font-mono uppercase tracking-wider mb-1.5 block">
+                                    <label className="text-stone-800 text-xs tracking-wider mb-1.5 block">
                                         Last Name
                                     </label>
                                     <input 
@@ -128,13 +128,13 @@ export default function CandidateManagement() {
                                         value={last_name}
                                         onChange={(e) => setLastName(e.target.value)}
                                         placeholder="Enter candidate's last name"
-                                        className="bg-stone-50/50 text-stone-900 text-sm px-4 py-3 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900/20 w-full transition-all"
+                                        className="bg-stone-50/50 text-stone-900 text-sm px-4 py-2 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900 w-full transition-all"
                                     />
                                     {errors.last_name && <span className="text-red-500 text-xs mt-1 block font-mono">{errors.last_name}</span>}
                                 </div>
 
                                 <div>
-                                    <label className="text-stone-800 text-xs font-mono uppercase tracking-wider mb-1.5 block">
+                                    <label className="text-stone-800 text-xs tracking-wider mb-1.5 block">
                                         Position
                                     </label>
                                     <input 
@@ -142,13 +142,13 @@ export default function CandidateManagement() {
                                         value={position}
                                         onChange={(e) => setPosition(e.target.value)}
                                         placeholder="e.g. Barangay Chairman Candidate"
-                                        className="bg-stone-50/50 text-stone-900 text-sm px-4 py-3 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900/20 w-full transition-all"
+                                        className="bg-stone-50/50 text-stone-900 text-sm px-4 py-2 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900 w-full transition-all"
                                     />
                                     {errors.position && <span className="text-red-500 text-xs mt-1 block font-mono">{errors.position}</span>}
                                 </div>
 
                                 <div>
-                                    <label className="text-stone-800 text-xs font-mono uppercase tracking-wider mb-1.5 block">
+                                    <label className="text-stone-800 text-xs tracking-wider mb-1.5 block">
                                         Party List
                                     </label>
                                     <input 
@@ -156,7 +156,7 @@ export default function CandidateManagement() {
                                         value={partylist}
                                         onChange={(e) => setPartylist(e.target.value)}
                                         placeholder="e.g. Protekboto Coalition"
-                                        className="bg-stone-50/50 text-stone-900 text-sm px-4 py-3 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900/20 w-full transition-all"
+                                        className="bg-stone-50/50 text-stone-900 text-sm px-4 py-2 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900 w-full transition-all"
                                     />
                                     {errors.partylist && <span className="text-red-500 text-xs mt-1 block font-mono">{errors.partylist}</span>}
                                 </div>
@@ -174,12 +174,11 @@ export default function CandidateManagement() {
                             </div>
                         </form>
 
-                        <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-xs flex flex-col gap-4 lg:col-span-6 max-h-[600px] overflow-y-auto">
-                            <div className="border-b border-stone-100 pb-3">
+                        <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-xs flex flex-col gap-4 lg:col-span-6 max-h-[500px] overflow-y-auto">
+                            <div className="border-b border-stone-100 pb-4 mt-2">
                                 <h3 className="text-base font-medium text-stone-900">
                                     Registered Candidates
                                 </h3>
-                                <p className="text-xs text-stone-400 font-mono mt-0.5">Live Ballot Registry</p>
                             </div>
 
                             <div className="flex flex-col gap-3">
@@ -189,17 +188,19 @@ export default function CandidateManagement() {
                                     Array.isArray(candidates) && candidates.map((cand) => (
                                         <div key={cand.id || cand._id} className="p-4 rounded-xl border border-stone-100 bg-stone-50/50 flex items-center justify-between gap-4">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-lg bg-green-50 text-green-900 flex items-center justify-center border border-green-200 shrink-0">
-                                                    <User className="w-4 h-4" />
-                                                </div>
                                                 <div>
                                                     <h4 className="text-sm font-medium text-stone-900">{cand.first_name} {cand.last_name}</h4>
-                                                    <span className="text-xs font-mono text-stone-500 block">{cand.position}</span>
+                                                    <span className="text-xs text-stone-500 block">{cand.position}</span>
                                                 </div>
                                             </div>
-                                            <span className="text-xs font-mono bg-white border border-stone-200 px-2.5 py-1 rounded-md text-stone-600 flex items-center gap-1">
-                                                <Award className="w-3 h-3 text-green-800" /> {cand.partylist}
-                                            </span>
+                                            <div className="justify-center items-center flex flex-row gap-2">
+                                                <button className="text-xs font-mono bg-white border border-stone-200 px-2.5 py-1 rounded-md text-stone-600 flex items-center gap-1 hover:bg-green-900 hover:text-white">
+                                                    edit
+                                                </button>
+                                                <button className="text-xs font-mono bg-white border border-stone-200 px-2.5 py-1 rounded-md text-stone-600 flex items-center gap-1 hover:bg-red-900 hover:text-white">
+                                                    delete
+                                                </button>
+                                            </div>
                                         </div>
                                     ))
                                 )}

@@ -59,7 +59,7 @@ export default function AdminDashboard() {
   }, {});
 
   return (
-    <div className="min-h-screen bg-stone-50 flex flex-col font-sentient">
+    <div className="min-h-screen bg-stone-50 flex flex-col font-sentient animate-page-in">
       <div className="flex flex-1">
         <Sidebar />
 
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-lg bg-green-50 text-green-900 flex items-center justify-center border border-green-200">
-                              <BarChart3 className="w-5 h-5" />
+                              1
                             </div>
                             <div className="flex flex-col">
                               <p className="text-lg font-medium text-stone-900">

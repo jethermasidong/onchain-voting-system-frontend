@@ -108,7 +108,7 @@ export default function Login() {
                 <input 
                   name="voter_id" 
                   type="text" 
-                  maxLength={12} 
+                  maxLength={14} 
                   required 
                   className="w-full text-sm border rounded-md border-gray-300 focus:border-black pl-10 pr-3 py-2 outline-none font-light transition-colors" 
                   placeholder="Enter your Voter ID" 

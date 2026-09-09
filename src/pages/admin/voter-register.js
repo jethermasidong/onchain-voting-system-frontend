@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Sidebar from "../../components/sidebar.js";
 import { Check } from "lucide-react";
 import axios from "axios";
@@ -25,7 +25,7 @@ export default function VoterRegister() {
                 if ("vibrate" in navigator) {
                     navigator.vibrate(200);
                 } return;
-        };
+            };
 
         try {
             const token = localStorage.getItem('token');
@@ -91,7 +91,7 @@ export default function VoterRegister() {
                                     <input 
                                         type="text"
                                         value={voters_id}
-                                        onChange={(e) => setFirstName(e.target.value)}
+                                        onChange={(e) => setVotersId(e.target.value)}
                                         placeholder="Enter voter's id"
                                         className="bg-stone-50/50 text-stone-900 text-sm px-4 py-2 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900 w-full transition-all"
                                     />
@@ -105,7 +105,7 @@ export default function VoterRegister() {
                                     <input 
                                         type="text"
                                         value={name_hash}
-                                        onChange={(e) => setLastName(e.target.value)}
+                                        onChange={(e) => setNameHash(e.target.value)}
                                         placeholder="Enter voters full name"
                                         className="bg-stone-50/50 text-stone-900 text-sm px-4 py-2 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900 w-full transition-all"
                                     />
@@ -119,7 +119,7 @@ export default function VoterRegister() {
                                     <input 
                                         type="number"
                                         value={precinct_number}
-                                        onChange={(e) => setPosition(e.target.value)}
+                                        onChange={(e) => setPrecinctNumber(e.target.value)}
                                         placeholder="e.g. 99324-32423-32423"
                                         className="bg-stone-50/50 text-stone-900 text-sm px-4 py-2 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900 w-full transition-all"
                                     />
@@ -133,7 +133,7 @@ export default function VoterRegister() {
                                     <input 
                                         type="password"
                                         value={password}
-                                        onChange={(e) => setPartylist(e.target.value)}
+                                        onChange={(e) => setPassword(e.target.value)}
                                         placeholder="Enter password"
                                         className="bg-stone-50/50 text-stone-900 text-sm px-4 py-2 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900 w-full transition-all"
                                     />

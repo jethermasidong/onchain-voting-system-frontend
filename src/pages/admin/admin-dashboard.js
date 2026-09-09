@@ -74,14 +74,14 @@ export default function AdminDashboard() {
           </div>
 
           <h2 className="text-xl mb-6 font-medium text-black uppercase tracking-wider font-mono">
-            Candidate Metrics by Position
+            Election Results
           </h2>
 
           <div className="flex flex-col gap-10 w-full max-w-5xl">
             {Object.entries(categorizedCandidates).map(([position, group]) => (
               <div key={position} className="flex flex-col gap-4">
                 <div className="border-b border-stone-200 pb-2">
-                  <h3 className="text-sm font-mono uppercase tracking-widest text-green-900 font-semibold">
+                  <h3 className="text-sm font-mono tracking-widest text-black font-semibold">
                     {position}
                   </h3>
                 </div>
@@ -97,32 +97,28 @@ export default function AdminDashboard() {
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-green-50 text-green-900 flex items-center justify-center border border-green-200">
-                              1
-                            </div>
-                            <div className="flex flex-col">
-                              <p className="text-lg font-medium text-stone-900">
+                            <div className="flex flex-row items-center gap-1">
+                              <p className="text-xl font-medium text-stone-900">
                                 {candidate.name}
                               </p>
-                              <span className="text-xs font-normal text-stone-500 font-mono">
-                                {candidate.partylist}
+                              <span className="text-md font-normal uppercase text-stone-500 font-mono">
+                                ({candidate.partylist})
                               </span>
                             </div>
                           </div>
-                          <div className="flex flex-col items-end">
-                            <span className="text-stone-900 font-medium text-2xl font-mono leading-none">
-                              {candidate.totalVotes.toLocaleString()}
-                            </span>
-                            <span className="text-[10px] text-stone-400 uppercase font-mono tracking-wider mt-1">
-                              Votes
-                            </span>
-                          </div>
                         </div>
-
+                        <div className="flex flex-row items-center gap-2 -mt-3 -mb-2">
+                          <span className="text-green-900 font-extrabold text-3xl font-mono leading-none">
+                            {candidate.totalVotes.toLocaleString()}
+                          </span>
+                          <span className="text-md text-stone-400 font-mono tracking-wider mt-1">
+                            Votes
+                          </span> 
+                        </div>
                         <div className="flex flex-col gap-2">
-                          <div className="w-full h-3 bg-stone-100 rounded-full overflow-hidden p-0.5 border border-stone-200">
+                          <div className="w-full h-5 bg-stone-100 rounded-full overflow-hidden p-0.5 border border-stone-200">
                             <div 
-                              className="h-full bg-green-900 rounded-full transition-all duration-500"
+                              className="h-full bg-green-900 rounded-l-full transition-all duration-500"
                               style={{ width: `${votePercentage}%` }}
                             ></div>
                           </div>

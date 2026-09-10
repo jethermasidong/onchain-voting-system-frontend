@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Check } from "lucide-react";
 import Sidebar from "../../components/sidebar";
@@ -9,8 +9,36 @@ export default function PositionManagement() {
     const [order, setOrder] = useState("");
     const [max_votes, setMaxVotes] = useState("");
 
-    const [errors, setErrors] = useState("");
-    const [success, setSuccess] = useState("");
+    const [positions, setPositions] = useState([]);
+    const [errors, setErrors] = useState({});
+    const [success, setSuccess] = useState(false);
+
+    const fetchPositions = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get("http://localhost:3000/api/positions", {
+                headers: { Authorization: `Bearer ${token}`}
+            });
+
+            const data = response.data;
+            if (Array.isArray(data)) {
+                setPositions(data);
+            } else if (data && Array.isArray(data.rows)) {
+                setPositions(data.rows);
+            } else if (data && Array.isArray(data.positions)) {
+                setPositions(data.positions);
+            } else {
+                setPositions([]);
+            } 
+        } catch (error) {
+            console.error("Error fetching positions:", error);
+            setPositions([]);
+        }
+    };
+
+    useEffect(() => {
+        fetchPositions();
+    }, []);
 
     const handleSubmit = async (p) => {
         p.preventDefault();
@@ -27,7 +55,7 @@ export default function PositionManagement() {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.post("http://localhost:3000/api/position", 
+            await axios.post("http://localhost:3000/api/positions", 
                 {position_name, order, max_votes},
                 {headers: {Authorization: `Bearer ${token}`}},
             )
@@ -70,7 +98,7 @@ export default function PositionManagement() {
                         Position Management
                     </h2> 
 
-                    <div className="w-full max-w-xl gap-8 items-center">
+                    <div className="w-full max-w-4xl gap-8 items-start grid grid-cols-1 lg:grid-cols-12">
                         <form onSubmit={handleSubmit} className="bg-white border border-stone-200 rounded-2xl p-8 shadow-xs flex flex-col gap-6 lg:col-span-6">
                             <div className="flex items-center gap-3 border-b border-stone-100 pb-4">
                                 <p className="text-base font-medium text-stone-900">
@@ -115,7 +143,7 @@ export default function PositionManagement() {
                                         type="number"
                                         value={max_votes}
                                         onChange={(p) => setMaxVotes(p.target.value)}
-                                        placeholder="e.g. 99324-32423-32423"
+                                        placeholder="e.g. 2"
                                         className="bg-stone-50/50 text-stone-900 text-sm px-4 py-2 rounded-xl border border-stone-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-900 w-full transition-all"
                                     />
                                     {errors.max_votes && <span className="text-red-500 text-xs mt-1 block font-mono">{errors.max_votes}</span>}
@@ -127,12 +155,45 @@ export default function PositionManagement() {
                                     type="submit"
                                     className="bg-green-900 flex items-center justify-center gap-2 py-2.5 px-6 text-sm font-medium rounded-xl text-white hover:bg-green-800 transition-all shadow-sm cursor-pointer"
                                 >
-                                    <span>Save Candidate</span>
+                                    <span>Save Position</span>
                                     <Check className="w-4 h-4" />
                                 </button>
                                 {errors.form && <p className="text-red-600 text-xs mt-1 border rounded-md border-red-600 px-2 py-1 text-center">{errors.form}</p>}
                             </div>
                         </form>
+
+                        <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-xs flex flex-col gap-4 lg:col-span-6 max-h-[500px] overflow-y-auto">
+                            <div className="border-b border-stone-100 pb-4 mt-2">
+                                <h3 className="text-base font-medium text-stone-900">
+                                    Positions
+                                </h3>
+                            </div>
+
+                            <div className="flex flex-col gap-3">
+                                {Array.isArray(positions) && positions.length === 0 ? (
+                                    <p className="text-sm text-stone-400 text-center py-8 font-light">No position saved yet.</p>
+                                ) : (
+                                    Array.isArray(positions) && positions.map((post) => (
+                                        <div key={post.id || post._id} className="p-4 rounded-xl border border-stone-100 bg-stone-50/50 flex items-center justify-between gap-4">
+                                            <div className="flex items-center gap-3">
+                                                <div>
+                                                    <h4 className="text-sm font-medium text-stone-900">{post.position_name}</h4>
+                                                    <span className="text-xs text-stone-500 block">Max Votes: {post.max_votes}</span>
+                                                </div>
+                                            </div>
+                                            <div className="justify-center items-center flex flex-row gap-2">
+                                                <button className="text-xs font-mono bg-white border border-stone-200 px-2.5 py-1 rounded-md text-stone-600 flex items-center gap-1 hover:bg-green-900 hover:text-white">
+                                                    edit
+                                                </button>
+                                                <button className="text-xs font-mono bg-white border border-stone-200 px-2.5 py-1 rounded-md text-stone-600 flex items-center gap-1 hover:bg-red-900 hover:text-white">
+                                                    delete
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        </div>
                     </div>
 
                     <div className={`fixed bottom-5 right-5 z-50 transition-all duration-500 ease-in-out transform 

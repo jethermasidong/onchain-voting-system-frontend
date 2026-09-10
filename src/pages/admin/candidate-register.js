@@ -57,7 +57,7 @@ export default function CandidateManagement() {
         try {
             const token = localStorage.getItem('token');
             await axios.post(
-                "http://localhost:3000/api/candidate",
+                "http://localhost:3000/api/candidates",
                 { first_name, last_name, position, partylist },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -190,7 +190,7 @@ export default function CandidateManagement() {
                                             <div className="flex items-center gap-3">
                                                 <div>
                                                     <h4 className="text-sm font-medium text-stone-900">{cand.first_name} {cand.last_name}</h4>
-                                                    <span className="text-xs text-stone-500 block">{cand.position}</span>
+                                                    <span className="text-xs text-black block">{cand.position_name}</span>
                                                 </div>
                                             </div>
                                             <div className="justify-center items-center flex flex-row gap-2">

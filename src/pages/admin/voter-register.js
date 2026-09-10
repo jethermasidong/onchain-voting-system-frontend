@@ -30,7 +30,7 @@ export default function VoterRegister() {
         try {
             const token = localStorage.getItem('token');
             await axios.post(
-                "http://localhost:3000/api/insert-voter",
+                "http://localhost:3000/api/voters",
                 {voters_id, name_hash, precinct_number, password, role: "voter"},
                 {headers: {Authorization: `Bearer ${token}`},
             })

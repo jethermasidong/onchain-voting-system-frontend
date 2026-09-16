@@ -1,15 +1,46 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import Logo from "../../assets/images/login.jpeg";
+import { useEffect } from "react";
+import axios from "axios";
 export default function VotingPage() {
-    const [selectedVotes, setSelectedVotes] = useState({});
+    const [first_name, setFirstName] = useState("");
+    const [last_name, setLastName] = useState("");
+    const [position, setPosition] = useState("");
+    const [partylist, setPartylist] = useState("");
 
-    const dummyCandidates = [
-        { id: 1, first_name: "Maria", last_name: "Mercedez", position: "Barangay Chairman", partylist: "Protekboto Coalition", ballot_number: 1 },
-        { id: 2, first_name: "April", last_name: "Juarez", position: "Barangay Chairman", partylist: "Reform Alliance", ballot_number: 2 },
-        { id: 3, first_name: "Jether", last_name: "Masidong", position: "Barangay Kagawad", partylist: "Protekboto Coalition", ballot_number: 1 },
-        { id: 4, first_name: "Paul", last_name: "Suarez", position: "Barangay Kagawad", partylist: "Reform Alliance", ballot_number: 1 }
-    ];
+    const [candidates, setCandidates] = useState([]);
+    const [errors, setErrors] = useState({});
+    const [success, setSuccess] = useState(false);
+
+    const fetchCandidates = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get("http://localhost:3000/api/candidates", {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            
+            const data = response.data;
+            if (Array.isArray(data)) {
+                setCandidates(data);
+            } else if (data && Array.isArray(data.rows)) {
+                setCandidates(data.rows);
+            } else if (data && Array.isArray(data.candidates)) {
+                setCandidates(data.candidates);
+            } else {
+                setCandidates([]);
+            }
+        } catch (error) {
+            console.error("Error fetching candidates:", error);
+            setCandidates([]);
+        }
+    };
+
+    useEffect(() => {
+        fetchCandidates();
+    }, []);
+
+    const [selectedVotes, setSelectedVotes] = useState({});
 
     const handleSelect = (position, candidateId) => {
         setSelectedVotes(prev => ({
@@ -18,13 +49,18 @@ export default function VotingPage() {
         }));
     };
 
-    const categorizedCandidates = dummyCandidates.reduce((acc, candidate) => {
-        if (!acc[candidate.position]) {
-            acc[candidate.position] = [];
+    const categorizedCandidates = candidates.reduce((acc, candidate) => {
+        const posName = candidate.position_name || "Unassigned Position";
+        if (!acc[posName]) {
+            acc[posName] = [];
         }
-        acc[candidate.position].push(candidate);
+        acc[posName].push(candidate);
         return acc;
     }, {});
+
+    Object.keys(categorizedCandidates).forEach(posName => {
+        categorizedCandidates[posName].sort((a, b) => (a.ballot_number || 0) - (b.ballot_number || 0));
+    });
 
     return (
         <div className="min-h-screen bg-white flex flex-col font-sentient">
@@ -60,7 +96,7 @@ export default function VotingPage() {
                                                         : 'border-stone-200 hover:border-stone-300'
                                                 }`}
                                             >
-                                                <div className={`w-6 h-6 rounded-full flex items-center justify-center border transition-all ${
+                                                <div className={`w-6 h-6 flex items-center justify-center border transition-all ${
                                                     isSelected 
                                                         ? 'bg-green-900 border-green-900 text-white' 
                                                         : 'border-stone-300 bg-white'
